@@ -1,0 +1,93 @@
+name: risk-automation
+# OPTIONAL security-detector bridge (see docs/RISK_MANAGEMENT.md §8) — INERT until you
+# configure it: every job is guarded by the repository variable RISK_PROJECT_URL.
+#
+# What it does when enabled:
+#   1. Adds `risk`-labelled issues to the Risk Register board (Projects v2).
+#   2. Opens a `risk` + `risk-cat:vulnerability` issue when a CRITICAL/HIGH Dependabot
+#      alert appears (back-linked; one issue per alert).
+#
+# TOKENS (both are distinct grants the default GITHUB_TOKEN CANNOT provide):
+#   - job 1 (board): a PAT/App token with the Projects v2 `project` scope in
+#     RISK_PROJECT_TOKEN — without it the step skips.
+#   - job 2 (Dependabot sweep): a fine-grained PAT/App token with **Dependabot alerts:
+#     read** (+ Issues: read/write) in RISK_ALERTS_TOKEN — the `/dependabot/alerts` API is
+#     NOT covered by the workflow `permissions:` block, so the default token 403s. Without
+#     RISK_ALERTS_TOKEN the sweep skips; a real API error fails the job loudly (it does not
+#     silently report "no alerts").
+
+on:
+  issues:
+    types: [labeled]
+  schedule:
+    - cron: "17 6 * * 1" # weekly Dependabot sweep (Mon 06:17 UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  add-to-board:
+    if: >-
+      vars.RISK_PROJECT_URL != '' &&
+      github.event_name == 'issues' &&
+      github.event.label.name == 'risk'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add issue to the Risk Register board
+        if: ${{ env.HAS_TOKEN == 'true' }}
+        uses: actions/add-to-project@v1.0.2
+        with:
+          project-url: ${{ vars.RISK_PROJECT_URL }}
+          github-token: ${{ secrets.RISK_PROJECT_TOKEN }}
+    env:
+      HAS_TOKEN: ${{ secrets.RISK_PROJECT_TOKEN != '' }}
+
+  dependabot-to-register:
+    if: vars.RISK_PROJECT_URL != '' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4 — for the SOUP cross-check against soup.yaml
+      - name: Open register issues for critical/high Dependabot alerts
+        env:
+          GH_TOKEN: ${{ secrets.RISK_ALERTS_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          [ -n "${GH_TOKEN:-}" ] || { echo "RISK_ALERTS_TOKEN not set (needs Dependabot alerts: read) — sweep skipped."; exit 0; }
+          # Fail LOUDLY on a real API error; only an empty array means genuinely no alerts.
+          if ! raw=$(gh api "repos/$REPO/dependabot/alerts?state=open&severity=critical,high&per_page=100" 2>/tmp/gherr); then
+            echo "::error::Dependabot alerts API failed — RISK_ALERTS_TOKEN needs 'Dependabot alerts: read' (or Dependabot is disabled):"; cat /tmp/gherr; exit 1
+          fi
+          alerts=$(jq -c '.[] | {number, severity: .security_advisory.severity, summary: .security_advisory.summary, url: .html_url, pkg: .dependency.package.name}' <<<"$raw")
+          [ -z "$alerts" ] && { echo "No open critical/high Dependabot alerts."; exit 0; }
+          # Dedup by ENUMERATING existing vulnerability issues + client-side marker match —
+          # NOT `gh issue list --search`, whose tokenized full-text match is unreliable for
+          # hyphen/number markers (mirrors the .gitlab-ci.yml dedup rationale).
+          existing=$(gh issue list --repo "$REPO" --label risk-cat:vulnerability --state all --limit 200 --json body --jq '.')
+          echo "$alerts" | while IFS= read -r alert; do
+            number=$(jq -r '.number' <<<"$alert")
+            marker="dependabot-alert-$number"
+            if jq -e --arg m "$marker" 'any(.[]; .body | contains($m))' <<<"$existing" >/dev/null; then
+              echo "issue for alert #$number exists — skip"
+              continue
+            fi
+            severity=$(jq -r '.severity' <<<"$alert")
+            summary=$(jq -r '.summary' <<<"$alert")
+            url=$(jq -r '.url' <<<"$alert")
+            pkg=$(jq -r '.pkg' <<<"$alert")
+            issue_url=$(gh issue create --repo "$REPO" \
+              --title "[RISK] Dependabot $severity: $summary" \
+              --label "risk,risk:open,risk-cat:vulnerability" \
+              --body "$(printf 'Automated register entry for a %s Dependabot alert.\n\nAlert: %s\nPackage: %s\n\nTriage per docs/RISK_MANAGEMENT.md (score, owner, decide).\n\n<!-- %s -->' "$severity" "$url" "$pkg" "$marker")")
+            echo "opened issue for alert #$number ($issue_url)"
+            # SOUP cross-check (docs/SOUP.md): alert on an inventoried component → flag
+            # the issue and prompt the anomaly + harm-risk assessment. Additive; skips
+            # silently when soup.yaml or the soup-anomaly label is absent.
+            if [ -f soup.yaml ] && grep -qE "^\s*-?\s*name:\s*[\"']?${pkg}[\"']?\s*(#.*)?$" soup.yaml; then
+              gh issue edit "$issue_url" --repo "$REPO" --add-label soup-anomaly 2>/dev/null || true
+              gh issue comment "$issue_url" --repo "$REPO" \
+                --body "\`$pkg\` is an inventoried SOUP component: update its known-anomalies impact assessment in \`soup.yaml\` (docs/SOUP.md). If the anomaly can affect patient safety, raise a linked **harm-risk** issue (docs/HARM_RISK.md)." || true
+            fi
+          done
