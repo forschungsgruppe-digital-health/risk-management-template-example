@@ -17,6 +17,7 @@ Everything here is **synthetic** — the register entries use obviously artifici
 | [Issue forms](.github/ISSUE_TEMPLATE/) | risk · harm-risk · requirement · soup-anomaly (62304 §7.1.3 record) · field-feedback (14971 §10 intake) |
 | [docs/](docs/) | The applied method set: RISK_MANAGEMENT (+ the [RECIPES](docs/RECIPES.md) situation cookbook — 13 step-by-step recipes), HARM_RISK (+ §9 [report stub](docs/HARM_RISK_REPORT.md)), SECURITY_RISK, SOUP, TRACEABILITY, CONFORMANCE_TRANSFER, [standards/](docs/standards/) (CONFORMANCE index, GSPR checklist, 62304 coverage map) |
 | [docs/adr/](docs/adr/) | The three living/template ADRs (0001 MDSW qualification · 0002 software safety class · 0003 supply-chain pinning) — placeholders marked, to be filled per product |
+| *(not included)* | The optional **arc42 layer** was skipped in this example — links into `docs/arc42/` resolve only after adopting it (see the template README) |
 | [Workflows](.github/workflows/) | risk-automation (inert until `RISK_PROJECT_URL`), sbom + register-export (run on releases; sbom was dispatched once live — see Actions) |
 
 ## How this repo was produced

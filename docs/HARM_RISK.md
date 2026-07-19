@@ -155,7 +155,9 @@ Lifecycle labels: `harm-risk:open` → (controls in progress = board status `Con
 Automated detectors feed this register the same way they feed the delivery register: a
 security alert on a SOUP component with potential safety impact prompts a linked
 `harm-risk` issue (see [`SOUP.md`](SOUP.md) and the risk-automation workflow). User
-feedback and incident reports from pilot/production use are triaged into this register.
+feedback and incident reports from pilot/production use arrive via the
+[field-feedback form](../.github/ISSUE_TEMPLATE/field-feedback.yml) (GitLab:
+`Field Feedback.md`, label `field-feedback`) and are triaged into this register.
 
 ## 9. Example entry (obviously artificial)
 
@@ -180,7 +182,8 @@ feedback and incident reports from pilot/production use are triaged into this re
   (`scripts/setup-labels.sh <owner>/<repo> .github/conformance-labels.json`).
 - **Release review report:** [`HARM_RISK_REPORT.md`](HARM_RISK_REPORT.md) (14971 §9 — one
   per release, three conclusions + sign-off; evidence: the release's register export).
-- **Method:** this document · delivery risks: [`RISK_MANAGEMENT.md`](RISK_MANAGEMENT.md)
+- **Method:** this document · day-to-day situations: [`RECIPES.md`](RECIPES.md)
+  · delivery risks: [`RISK_MANAGEMENT.md`](RISK_MANAGEMENT.md)
   · security risks: [`SECURITY_RISK.md`](SECURITY_RISK.md)
   · standards context: [`standards/CONFORMANCE.md`](standards/CONFORMANCE.md).
 - **On GitLab:** `.gitlab/issue_templates/Harm Risk.md` + scoped `harm-risk::*` labels +
