@@ -3,8 +3,8 @@
 > **Template stub.** ISO 14971 §9 requires a review of the risk-management plan's
 > *execution* **before release for commercial distribution**; the result is recorded and
 > maintained as this report. One per release, or a living doc updated per release. While the
-> product is **not** MDSW ([ADR-0028](adr/0028-mdsw-qualification.md)) keep it as a light
-> living record; it becomes binding on the ADR-0028 flip. Method + registers:
+> product is **not** MDSW ([ADR-0001](adr/0001-mdsw-qualification.md)) keep it as a light
+> living record; it becomes binding on the ADR-0001 flip. Method + registers:
 > [`HARM_RISK.md`](HARM_RISK.md).
 
 - **Product / scope:** <…>

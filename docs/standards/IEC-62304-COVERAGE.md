@@ -3,14 +3,14 @@
 Which IEC 62304:2006+A1:2015 clauses this repo keeps evidence for **now**, which are
 **deferred** to the future manufacturer, and which are **not yet in scope** — so the line
 between "deferred on purpose" and "silently missing" is explicit. This binds only if the
-product qualifies as MDSW ([ADR-0028](../adr/0028-mdsw-qualification.md)); the **software
-safety class** ([ADR-0029](../adr/0029-software-safety-classification.md)) sets how much
+product qualifies as MDSW ([ADR-0001](../adr/0001-mdsw-qualification.md)); the **software
+safety class** ([ADR-0002](../adr/0002-software-safety-classification.md)) sets how much
 rigour each clause needs (class A < B < C). Clause numbers verified against the licensed
 standard (2026-07).
 
 | Clause | Area | Status | Where / note |
 |---|---|---|---|
-| §4.3 | Software safety classification | **covered** | [ADR-0029](../adr/0029-software-safety-classification.md) — risk-based A/B/C, per software item |
+| §4.3 | Software safety classification | **covered** | [ADR-0002](../adr/0002-software-safety-classification.md) — risk-based A/B/C, per software item |
 | §5.1 | Software development planning | not-yet | a class-B/C project adds a software development plan; §5.1.1(c) traceability is modelled in [`TRACEABILITY.md`](../TRACEABILITY.md) |
 | §5.2 | Software requirements analysis | partial | `requirement`-labelled issues ([`TRACEABILITY.md`](../TRACEABILITY.md)) capture requirements; a formal SRS is deferred |
 | §5.3 | Software architectural design | partial | arc42 §5 building-block view; the SOUP boundary in [`SOUP.md`](../SOUP.md) (§5.3.3–5.3.5) |

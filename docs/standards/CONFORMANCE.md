@@ -4,10 +4,10 @@ Which standards and regulations this project works against, in which role, and w
 evidence lives in the repo. Strategy: **design for conformance, defer certification** —
 the product is developed in a research project, market placement after project end is
 intended, the manufacturer (MDR sense) is TBD; qualification as medical-device software
-is a **living decision** ([ADR-0028](../adr/0028-mdsw-qualification.md)).
+is a **living decision** ([ADR-0001](../adr/0001-mdsw-qualification.md)).
 
 **Status values** — `active`: applied now, evidence in this repo · `conditional`: applies
-only if the stated condition holds · `iff MDSW`: becomes binding only if ADR-0028 flips
+only if the stated condition holds · `iff MDSW`: becomes binding only if ADR-0001 flips
 to "is MDSW" · `deferred-to-manufacturer`: an obligation of the future market-placing
 manufacturer, not a repo artifact · `watch`: applicability window or final shape still
 approaching — re-check at the review cadence.
@@ -45,15 +45,15 @@ timeline are moving targets — re-check them at the review cadence.
 | BSI TR-03161 — *Anforderungen an Anwendungen im Gesundheitswesen* (Part 1: mobile, Part 2: web, Part 3: backend) | current version at evaluation | security requirements for health applications | conditional | project-specific security concept |
 | BSI C5 — *Cloud Computing Compliance Criteria Catalogue* | 2020 | cloud-operation attestation frame | conditional (cloud operation) | deployment docs |
 
-## 4. Activated iff MDSW = yes (ADR-0028)
+## 4. Activated iff MDSW = yes (ADR-0001)
 
 | Standard / Regulation | Edition | Role | Status | Evidence prepared in |
 |---|---|---|---|---|
-| [Regulation (EU) 2017/745 (MDR)](https://eur-lex.europa.eu/eli/reg/2017/745/oj) | in force | qualification (Art. 2(1)) + classification (**Annex VIII Rule 11**) + GSPR Annex I ([checklist](GSPR-CHECKLIST.md)) | iff MDSW | [ADR-0028](../adr/0028-mdsw-qualification.md) |
-| MDCG 2019-11 **rev. 1 (17 June 2025)** — *Guidance on qualification and classification of software — MDR/IVDR* ([direct PDF](https://health.ec.europa.eu/document/download/b45335c5-1679-4c71-a91c-fc7a4d37f12b_en?filename=mdcg_2019_11_en.pdf)) | rev. 1 covers AI-based software, modules, EHR/EHDS interplay | the decision aid ADR-0028 walks | active (drives the living ADR) | [ADR-0028](../adr/0028-mdsw-qualification.md) |
+| [Regulation (EU) 2017/745 (MDR)](https://eur-lex.europa.eu/eli/reg/2017/745/oj) | in force | qualification (Art. 2(1)) + classification (**Annex VIII Rule 11**) + GSPR Annex I ([checklist](GSPR-CHECKLIST.md)) | iff MDSW | [ADR-0001](../adr/0001-mdsw-qualification.md) |
+| MDCG 2019-11 **rev. 1 (17 June 2025)** — *Guidance on qualification and classification of software — MDR/IVDR* ([direct PDF](https://health.ec.europa.eu/document/download/b45335c5-1679-4c71-a91c-fc7a4d37f12b_en?filename=mdcg_2019_11_en.pdf)) | rev. 1 covers AI-based software, modules, EHR/EHDS interplay | the decision aid ADR-0001 walks | active (drives the living ADR) | [ADR-0001](../adr/0001-mdsw-qualification.md) |
 | MDCG 2020-1 — *Guidance on clinical evaluation (MDR) / performance evaluation (IVDR) of medical device software* | 2020 (March) | clinical-evaluation frame for MDSW | iff MDSW (execution deferred-to-manufacturer) | — |
 | MDCG 2019-16 — *Guidance on cybersecurity for medical devices* | rev. 1 (July 2020) | operationalizes the Annex I §17 cybersecurity GSPR; complements IEC 81001-5-1 | iff MDSW — **security-RM method kept live now** | [`docs/SECURITY_RISK.md`](../SECURITY_RISK.md), [`SECURITY.md`](../../SECURITY.md), SBOM workflow, [`docs/SOUP.md`](../SOUP.md), vulnerability→register automation |
-| IEC 62304 — *Medical device software — Software life cycle processes* | 2006 + A1:2015 (Ed. 1.1) — **Ed. 2 at Committee Draft stage; IEC forecast publication ~2028 (date uncertain — monitor)**; Ed. 1.1 remains state of the art until then | software life cycle; SOUP (§8.1.2, §5.3.3–5.3.4, §7.1.3); software safety classes A/B/C (§4.3 → [ADR-0029](../adr/0029-software-safety-classification.md)) | iff MDSW — evidence kept live | [`docs/SOUP.md`](../SOUP.md), [`soup.yaml`](../../soup.yaml), [`docs/TRACEABILITY.md`](../TRACEABILITY.md), [ADR-0029](../adr/0029-software-safety-classification.md), [§-coverage map](IEC-62304-COVERAGE.md) |
+| IEC 62304 — *Medical device software — Software life cycle processes* | 2006 + A1:2015 (Ed. 1.1) — **Ed. 2 at Committee Draft stage; IEC forecast publication ~2028 (date uncertain — monitor)**; Ed. 1.1 remains state of the art until then | software life cycle; SOUP (§8.1.2, §5.3.3–5.3.4, §7.1.3); software safety classes A/B/C (§4.3 → [ADR-0002](../adr/0002-software-safety-classification.md)) | iff MDSW — evidence kept live | [`docs/SOUP.md`](../SOUP.md), [`soup.yaml`](../../soup.yaml), [`docs/TRACEABILITY.md`](../TRACEABILITY.md), [ADR-0002](../adr/0002-software-safety-classification.md), [§-coverage map](IEC-62304-COVERAGE.md) |
 | ISO 14971 — *Medical devices — Application of risk management to medical devices* | 2019 (Ed. 3); harmonized EU edition **EN ISO 14971:2019+A11:2021** (Annex ZA — the MDR "as far as possible" reconciliation, see [`HARM_RISK.md`](../HARM_RISK.md) §4) | harm-risk management process | iff MDSW — **register kept live now** | [`docs/HARM_RISK.md`](../HARM_RISK.md), harm-risk board, [§9 report](../HARM_RISK_REPORT.md) |
 | ISO/TR 24971 — *Guidance on the application of ISO 14971* | 2020 | scoring guidance (incl. P1×P2 decomposition) | companion to the above | [`docs/HARM_RISK.md`](../HARM_RISK.md) |
 | IEC 62366-1 — *Application of usability engineering to medical devices* | 2015 + A1:2020 | usability engineering file; **summative validation deferred-to-manufacturer** | iff MDSW | formative-evaluation notes per project |
@@ -68,11 +68,11 @@ timeline are moving targets — re-check them at the review cadence.
 | Regulation | Key dates | Applies | Status |
 |---|---|---|---|
 | [Regulation (EU) 2024/2847 — Cyber Resilience Act](https://eur-lex.europa.eu/eli/reg/2024/2847/oj) | in force 2024-12-10; **vulnerability-reporting obligations 2026-09-11**; main obligations **2027-12-11** | to commercial placement of products with digital elements — **iff the product is *not* MDR-covered** (MDR/IVDR devices are excluded); a post-project market placement lands inside its window | watch |
-| [Regulation (EU) 2024/1689 — AI Act](https://eur-lex.europa.eu/eli/reg/2024/1689/oj) | staged: GPAI 2025-08-02; Annex-III high-risk **2026-08-02**; Art. 6(1) product-linked high-risk **2027-08-02** — these are the *enacted, still-operative* dates. The 2026 *Digital Omnibus* (signed 8 Jul 2026, **awaiting OJ publication — not yet in force**) will defer them to **2027-12-02** and **2028-08-02** respectively once published | iff AI components are added; MDSW + third-party conformity assessment ⇒ high-risk via Art. 6(1) | watch (trigger listed in ADR-0028) |
+| [Regulation (EU) 2024/1689 — AI Act](https://eur-lex.europa.eu/eli/reg/2024/1689/oj) | staged: GPAI 2025-08-02; Annex-III high-risk **2026-08-02**; Art. 6(1) product-linked high-risk **2027-08-02** — these are the *enacted, still-operative* dates. The 2026 *Digital Omnibus* (signed 8 Jul 2026, **awaiting OJ publication — not yet in force**) will defer them to **2027-12-02** and **2028-08-02** respectively once published | iff AI components are added; MDSW + third-party conformity assessment ⇒ high-risk via Art. 6(1) | watch (trigger listed in ADR-0001) |
 | [Regulation (EU) 2025/327 — European Health Data Space](https://eur-lex.europa.eu/eli/reg/2025/327/oj) | in force 2025-03-26; general application 2027-03-26; **EHR-system obligations (priority category 1: patient summary, ePrescription/eDispensation) 2029-03-26** | iff the product is or embeds an **EHR system** processing priority-category data → self-assessed conformity, technical documentation, EU declaration | watch |
-| DiGA fast-track (Germany) — § 33a SGB V, DiGAV (BfArM) | available now | optional reimbursement pathway; **requires** MDSW class I/IIa | optional (evaluated at ADR-0028 flip) |
-| **MDR/IVDR amendment — COM(2025) 1023** (*Simplification Package*, proposal adopted 2025-12-16; ordinary legislative procedure ongoing) | not yet law | may alter software classification (Rule 11), certificate validity, conformity-assessment routes, and the AI-Act interplay — re-walk [ADR-0028](../adr/0028-mdsw-qualification.md) when it lands | watch |
-| MDCG 2025-6 / AIB 2025-1 — *Interplay between the MDR/IVDR and the AI Act* (June 2025) | published | the operative decision aid for the ADR-0028 **AI/ML trigger** (MDAI qualification, combined conformity assessment) | watch (cited from ADR-0028) |
+| DiGA fast-track (Germany) — § 33a SGB V, DiGAV (BfArM) | available now | optional reimbursement pathway; **requires** MDSW class I/IIa | optional (evaluated at ADR-0001 flip) |
+| **MDR/IVDR amendment — COM(2025) 1023** (*Simplification Package*, proposal adopted 2025-12-16; ordinary legislative procedure ongoing) | not yet law | may alter software classification (Rule 11), certificate validity, conformity-assessment routes, and the AI-Act interplay — re-walk [ADR-0001](../adr/0001-mdsw-qualification.md) when it lands | watch |
+| MDCG 2025-6 / AIB 2025-1 — *Interplay between the MDR/IVDR and the AI Act* (June 2025) | published | the operative decision aid for the ADR-0001 **AI/ML trigger** (MDAI qualification, combined conformity assessment) | watch (cited from ADR-0001) |
 | MDCG 2025-4 — *Guidance on MDSW apps distributed via online platforms* (2025) | published | applies iff the product is distributed as an app via online platforms/app stores | conditional |
 
 ## Maintenance
@@ -80,7 +80,7 @@ timeline are moving targets — re-check them at the review cadence.
 - Re-check `watch` rows and the IEC 62304 Ed. 2 note at the regular risk review
   ([`RISK_MANAGEMENT.md`](../RISK_MANAGEMENT.md) §7); regulatory drift is a
   `risk-cat:compliance` register entry.
-- Any edit to this file and to ADR-0028 should be human-reviewed (`CODEOWNERS` entry
+- Any edit to this file and to ADR-0001 should be human-reviewed (`CODEOWNERS` entry
   provided, set owners per project).
 - Column "Evidenced in" must point at living repo artifacts — an empty cell in an
   `active` row is a gap to raise as a risk.

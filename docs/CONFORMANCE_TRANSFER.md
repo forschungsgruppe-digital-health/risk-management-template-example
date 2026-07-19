@@ -1,7 +1,7 @@
 # Conformance transfer — handing the evidence to the future manufacturer
 
 The strategy behind the conformance layer ([`standards/CONFORMANCE.md`](standards/CONFORMANCE.md),
-[ADR-0028](adr/0028-mdsw-qualification.md)): the research project maintains the evidence
+[ADR-0001](adr/0001-mdsw-qualification.md)): the research project maintains the evidence
 that is **cheap to keep live but near-impossible to reconstruct**, and the organization
 that eventually places the product on the market — the **manufacturer** in the MDR/CRA
 sense, TBD via the dissemination/exploitation plan — adopts it.
@@ -27,7 +27,7 @@ sense, TBD via the dissemination/exploitation plan — adopts it.
 - **Traceability** ([`TRACEABILITY.md`](TRACEABILITY.md)) — reconstructable from the
   project forge (issues + PRs, exported with the boards at transfer); matrix via the
   advisory script.
-- **Qualification history** — every re-evaluation recorded in ADR-0028.
+- **Qualification history** — every re-evaluation recorded in ADR-0001.
 - **GSPR checklist** ([`standards/GSPR-CHECKLIST.md`](standards/GSPR-CHECKLIST.md)) — the
   software-side MDR Annex I evidence, pre-staged for the manufacturer's technical file.
 
@@ -69,7 +69,7 @@ Deliberately **not** maintained here (organizational, not repo artifacts):
    themselves move with the repo.
 2. Verify `soup.yaml` matches the last release's SBOM; close the gap or document it.
 3. Re-run the traceability matrix; attach it to the handover record.
-4. Walk ADR-0028 with the manufacturer's regulatory function — the qualification
+4. Walk ADR-0001 with the manufacturer's regulatory function — the qualification
    decision and its trigger history are the entry point to everything else.
 4b. Confirm a completed [`HARM_RISK_REPORT.md`](HARM_RISK_REPORT.md) exists for the last
    release, and walk the `not-yet` rows of

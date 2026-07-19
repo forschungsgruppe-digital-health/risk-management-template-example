@@ -1,7 +1,7 @@
 # GSPR conformity checklist (MDR Annex I) — <product>
 
 > **Template.** MDR Annex I **General Safety and Performance Requirements (GSPR)**. Binds
-> only if the product is MDSW ([ADR-0028](../adr/0028-mdsw-qualification.md)). This lists
+> only if the product is MDSW ([ADR-0001](../adr/0001-mdsw-qualification.md)). This lists
 > the GSPRs most relevant to standalone **software**; a full device needs the *entire*
 > Annex I. For MDSW the manufacturer must produce a complete GSPR checklist as part of the
 > technical documentation — this repo pre-stages the *software-side* evidence so it is not
@@ -14,7 +14,7 @@
 
 | GSPR | Requirement (paraphrase) | Applicable? | Evidence / where in repo | Met? |
 |---|---|---|---|---|
-| 1 | Safe & effective; risks acceptable weighed against benefit; no unacceptable compromise of clinical condition/safety | [RA] | intended purpose ([ADR-0028](../adr/0028-mdsw-qualification.md)); benefit-risk ([HARM_RISK_REPORT](../HARM_RISK_REPORT.md) §9) | [RA] |
+| 1 | Safe & effective; risks acceptable weighed against benefit; no unacceptable compromise of clinical condition/safety | [RA] | intended purpose ([ADR-0001](../adr/0001-mdsw-qualification.md)); benefit-risk ([HARM_RISK_REPORT](../HARM_RISK_REPORT.md) §9) | [RA] |
 | 2 | Reduce risks as far as possible without adversely affecting the benefit-risk ratio | [RA] | [HARM_RISK.md](../HARM_RISK.md) (ISO 14971) | [RA] |
 | 3 | A risk-management **system** — plan → analysis → control → review, continuously updated | [RA] | HARM_RISK.md §1–§10; HARM_RISK_REPORT.md | [RA] |
 | 4 | Risk-control measures in the safety priority order (inherently safe design → protective → information for safety) | [RA] | HARM_RISK.md §5 (14971 §7.1) | [RA] |

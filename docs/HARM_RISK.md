@@ -13,7 +13,7 @@ impact), and follows the 14971 control hierarchy instead of mitigate/accept/watc
 delivery risk may *reference* a harm risk (and vice versa); they are never merged.
 
 > **Scope note.** Kept live even while the product is not qualified as MDSW
-> ([ADR-0028](adr/0028-mdsw-qualification.md)): a harm-risk file is near-impossible to
+> ([ADR-0001](adr/0001-mdsw-qualification.md)): a harm-risk file is near-impossible to
 > reconstruct retroactively, and health software benefits from it regardless
 > (IEC 82304-1, IEC 81001-5-1 perspective). This template is **not** a claim of
 > regulatory compliance — completeness of the risk management file is the (future)
@@ -36,7 +36,7 @@ delivery risk may *reference* a harm risk (and vice versa); they are never merge
 
 **Start from the intended use (14971 §5.2–5.3).** Identify hazards *systematically*, not
 opportunistically: begin from the product's **intended use and reasonably foreseeable
-misuse** ([ADR-0028](adr/0028-mdsw-qualification.md) states the intended purpose; arc42 §1
+misuse** ([ADR-0001](adr/0001-mdsw-qualification.md) states the intended purpose; arc42 §1
 the goals) and its **characteristics related to safety**. Work the question checklist in
 **ISO/TR 24971 Annex A** (A.2.1–A.2.37 — users, use environment, data in/out, alarms,
 interoperability, autonomy…) to surface hazards; the supporting techniques in **Annex B**

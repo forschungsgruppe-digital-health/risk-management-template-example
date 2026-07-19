@@ -8,7 +8,7 @@ performance requirements** the product relies on (§5.3.3), required hardware/so
 (§5.3.4), and evaluation of **published anomaly lists** (§7.1.3).
 
 This is the 62304 evidence that is **most costly to backfill** — hence kept live even
-while the product is not qualified as MDSW ([ADR-0028](adr/0028-mdsw-qualification.md)).
+while the product is not qualified as MDSW ([ADR-0001](adr/0001-mdsw-qualification.md)).
 
 ## How this project keeps it
 

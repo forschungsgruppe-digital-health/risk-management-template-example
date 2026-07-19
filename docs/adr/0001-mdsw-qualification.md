@@ -1,4 +1,4 @@
-# 0028 — Medical device software (MDSW) qualification
+# 0001 — Medical device software (MDSW) qualification
 
 - **Status:** accepted — **living**, re-evaluated at the triggers below (this ADR is never
   "done"; it records the *current* qualification decision)
@@ -89,7 +89,7 @@ surgical intervention, **III** if it may cause death or an irreversible deterior
 health; software intended to monitor physiological processes is **IIa**, **IIb** where
 variations could result in immediate danger; **all other** software is **class I**. Record
 the resulting **device class** — which is *distinct* from the IEC 62304 **software safety
-class** (A/B/C) decided in [ADR-0029](0029-software-safety-classification.md). Then
+class** (A/B/C) decided in [ADR-0002](0002-software-safety-classification.md). Then
 evaluate the German **DiGA** fast-track (§ 33a SGB V / DiGAV; requires MDSW class I or IIa)
 if reimbursement in Germany is a goal.
 

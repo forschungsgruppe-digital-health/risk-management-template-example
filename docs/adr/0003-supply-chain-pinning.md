@@ -1,4 +1,4 @@
-# 0030 — Pin CI supply-chain actions; keep current with Dependabot
+# 0003 — Pin CI supply-chain actions; keep current with Dependabot
 
 - **Status:** accepted
 - **Date:** <YYYY-MM-DD>

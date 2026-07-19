@@ -1,7 +1,7 @@
-# 0029 — Software safety classification (IEC 62304 §4.3)
+# 0002 — Software safety classification (IEC 62304 §4.3)
 
 - **Status:** accepted — **living**, re-evaluated together with
-  [ADR-0028](0028-mdsw-qualification.md) and at the triggers below
+  [ADR-0001](0001-mdsw-qualification.md) and at the triggers below
 - **Date:** <YYYY-MM-DD of the latest evaluation>
 - **Deciders:** <project lead, regulatory-affairs contact if available>
 - **Linked risks:** <register issue tracking the classification/regulatory risk, if raised>
@@ -9,7 +9,7 @@
 > **Template note.** Ships with the conformance-readiness layer. Fill the placeholders at
 > first triage; keep the mechanism. This is the **IEC 62304 software safety class**
 > (A/B/C) — **distinct** from the MDR **Annex VIII Rule 11 device class** (I/IIa/IIb/III)
-> decided in [ADR-0028](0028-mdsw-qualification.md). A product has *both*; they answer
+> decided in [ADR-0001](0001-mdsw-qualification.md). A product has *both*; they answer
 > different questions (the patient-harm potential of a software item vs the market-access
 > risk class of the device) and must never be conflated.
 
@@ -37,14 +37,14 @@ requirement → design → test → SOUP granularity in
 [`../TRACEABILITY.md`](../TRACEABILITY.md) mandatory. Per A1:2015 the class may be assigned
 **per item**: a hazard-relevant item can be class B/C while the remainder is A, *if* the
 segregation is justified. The class only **binds** once the product is MDSW
-([ADR-0028](0028-mdsw-qualification.md)); it is recorded now because the harm-analysis
+([ADR-0001](0001-mdsw-qualification.md)); it is recorded now because the harm-analysis
 rationale behind it is near-impossible to reconstruct later.
 
 ## Current decision
 
 <State the current class, e.g.:>
 
-While the product is **not qualified as MDSW** ([ADR-0028](0028-mdsw-qualification.md)),
+While the product is **not qualified as MDSW** ([ADR-0001](0001-mdsw-qualification.md)),
 IEC 62304 does not bind and **no formal safety class is assigned** (record as
 *N/A — not MDSW*). The provisional working assumption, should qualification flip, is
 **Class <A|B|C>**, because <the software can / cannot contribute to a hazardous situation
@@ -60,7 +60,7 @@ justify the segregation>.
 2. Leave the class entirely unrecorded until MDSW qualification — rejected: the
    harm-analysis rationale for the class is exactly the near-impossible-to-reconstruct
    evidence this layer exists to preserve.
-3. **Record a provisional class + item decomposition now, binding on the ADR-0028 flip**
+3. **Record a provisional class + item decomposition now, binding on the ADR-0001 flip**
    (chosen): cheap to keep live, and it makes the traceability/SOUP rigour requirements
    explicit rather than implied.
 
@@ -76,7 +76,7 @@ justify the segregation>.
 
 Re-evaluate (and record here) whenever:
 
-- [ADR-0028](0028-mdsw-qualification.md) qualification changes — a flip to MDSW **binds**
+- [ADR-0001](0001-mdsw-qualification.md) qualification changes — a flip to MDSW **binds**
   this class;
 - a new or changed **harm-risk** ([`../HARM_RISK.md`](../HARM_RISK.md)) alters the
   worst-case harm the software can contribute to (may raise/lower a class);
