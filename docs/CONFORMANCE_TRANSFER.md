@@ -18,6 +18,10 @@ sense, TBD via the dissemination/exploitation plan — adopts it.
   [`SECURITY.md`](../SECURITY.md)) and the **62304 coverage map**
   ([`standards/IEC-62304-COVERAGE.md`](standards/IEC-62304-COVERAGE.md)) — the
   covered/partial/not-yet split the manufacturer walks at adoption.
+- **Data Protection Impact Assessment + Art. 32 measures** ([`dpia/`](dpia/README.md)) — the living
+  DPIA and TOM register (GDPR Art. 35/32) transfer to the **data controller** (the operator/organization
+  placing the product into real-data use — may differ from the MDR manufacturer); the legal sign-off
+  (§7) is theirs, not a repo artifact.
 - **Design history**: ADRs ([`adr/`](adr/README.md)) and the arc42 architecture
   documentation ([`arc42/`](arc42/README.md)), risk-linked via
   [§11](arc42/11_technical_risks.md).
@@ -64,8 +68,9 @@ Deliberately **not** maintained here (organizational, not repo artifacts):
 - **Clinical evaluation** execution per MDR Art. 61 / MDCG 2020-1 (the repo carries the
   inputs: intended purpose, risk file, verification evidence)
 - **Summative usability validation** per IEC 62366-1 (formative notes may live here)
-- Post-market surveillance & vigilance (MDR Art. 83–92) — though §10-feed mechanics
-  (detectors → registers) prototype the inputs
+- Post-market surveillance & vigilance (MDR Art. 83–92) — the **PMS plan + §10 feed mechanics**
+  are pre-staged ([`PMS.md`](PMS.md): field-feedback, SBOM/CVE, the periodic-review action); the
+  manufacturer executes the market-side reporting (PSUR, trend/serious-incident via EUDAMED, PMCF)
 
 ## Handover checklist (run at transfer)
 
