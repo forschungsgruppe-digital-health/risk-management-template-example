@@ -73,6 +73,19 @@ The chain is: **hazard → (sequence of events) → hazardous situation → harm
 becomes dangerous only through a *foreseeable sequence of events* that exposes someone, and
 **one hazard can lead to several different hazardous situations and harms** (14971 §5.4).
 
+**The regulatory acronyms** you will meet (expanded once here so the rest of the docs can be terse):
+
+| Acronym | Expansion | In one line |
+|---|---|---|
+| **MDR** | Medical Device Regulation (EU) 2017/745 | the EU *law* for medical devices; ISO 14971 is the *method* that helps satisfy its risk requirements. |
+| **CE** | Conformité Européenne | the mark a compliant device carries to be sold in the EU. |
+| **MDSW** | Medical Device Software | software that is itself a medical device (or drives one) — the gate that turns the optional conformance layer *on* (see [ADR-0001](../adr/0001-mdsw-qualification.md)). |
+| **GSPR** | General Safety and Performance Requirements | MDR **Annex I** — the requirements a device must meet; risk management sits in GSPR 1–8. |
+| **IFU** | Instructions For Use | the accompanying information; where "information for safety" residual-risk disclosures must land. |
+| **SOUP** | Software Of Unknown Provenance | third-party/off-the-shelf code you reuse but did not develop under the standard (IEC 62304). |
+| **DPIA / TOM** | Data Protection Impact Assessment / Technical & Organisational Measures | the GDPR (data-protection) track — Art. 35 / Art. 32. |
+| **PMS** | Post-Market Surveillance | actively watching the device after release (ISO 14971 §10 / MDR Art. 83–92). |
+
 **Worked example (from the example repo).** Issue
 [#2 in the example repo](https://github.com/forschungsgruppe-digital-health/risk-management-template-example/issues/2)
 is a complete, synthetic harm-risk written in exactly this chain:
@@ -117,7 +130,7 @@ its clause, and **how this template does it**.
   front* so later decisions cannot be bent to fit a result.
   → *Template:* [`../HARM_RISK.md`](../HARM_RISK.md) **§1** is that plan table, with rows for
   the policy basis (§4.2), the overall-residual method (§4.4 e) and review requirements
-  (§4.4 f) — filled in per project.
+  (§4.4 c) — filled in per project.
 - **The risk-management FILE** (14971 §4.5) — the evidence trail that, *for each hazard*,
   lets a reviewer trace analysis → evaluation → control + its verification → residual
   result. → *Template:* the register itself (GitHub issues), plus the §9 report and the

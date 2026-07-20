@@ -16,7 +16,7 @@ Everything here is **synthetic** — the register entries use obviously artifici
 | **Projects tab** | The two linked Projects v2 boards — *Risk Register* (5×5 fields, one triaged entry: L3·I3·Score 9·Medium) and *Harm Risk File* (S/P + residual S/P + control-verification fields). Views (e.g. the Matrix) are added manually — [the scripts print the recipe](scripts/setup-project-board.sh) |
 | [Issue forms](.github/ISSUE_TEMPLATE/) | risk · harm-risk · requirement · soup-anomaly (62304 §7.1.3 record) · field-feedback (14971 §10 intake) |
 | [docs/](docs/) | The applied method set: RISK_MANAGEMENT (+ the [RECIPES](docs/RECIPES.md) situation cookbook — 13 step-by-step recipes), plus the [risk-management primer](docs/learning/risk-management-primer.md) (EN/DE), HARM_RISK (+ §9 [report stub](docs/HARM_RISK_REPORT.md)), SECURITY_RISK, SOUP, TRACEABILITY, CONFORMANCE_TRANSFER, [standards/](docs/standards/) (CONFORMANCE index, GSPR checklist, 62304 coverage map) |
-| [docs/adr/](docs/adr/) | The three living/template ADRs (0001 MDSW qualification · 0002 software safety class · 0003 supply-chain pinning) — placeholders marked, to be filled per product |
+| [docs/adr/](docs/adr/) | The four living/template ADRs (0001 MDSW qualification · 0002 software safety class · 0003 supply-chain pinning · 0004 risk-management-file deliverable) — placeholders marked, to be filled per product |
 | *(not included)* | The optional **arc42 layer** was skipped in this example — links into `docs/arc42/` resolve only after adopting it (see the template README) |
 | [Workflows](.github/workflows/) | risk-automation (inert until `RISK_PROJECT_URL`), sbom + register-export (run on releases; sbom was dispatched once live — see Actions) |
 
@@ -30,7 +30,7 @@ Everything here is **synthetic** — the register entries use obviously artifici
    argument links them to this repo.
 4. Register entries raised through the issue forms, one triaged on the board.
 
-In a standalone child the template ADRs keep their numbers (0001–0003, as here); when
+In a standalone child the template ADRs keep their numbers (0001–0004, as here); when
 retrofitting a repo that already has ADRs they are renumbered to the next free numbers —
 the apply path handles that.
 
