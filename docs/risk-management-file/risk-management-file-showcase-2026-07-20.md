@@ -1,7 +1,7 @@
 ---
 title: Risk Management File
 subtitle: 'risk-demo-repo — release showcase-2026-07-20'
-date: '2026-07-20 17:37 UTC'
+date: '2026-07-20 18:47 UTC'
 lang: en
 toc: true
 toc-depth: 2
@@ -11,7 +11,7 @@ numbersections: true
 
 # Risk Management File — risk-demo-repo (release showcase-2026-07-20)
 
-> **What this document is.** A single-file **Risk Management File & Report** compiled per **ISO 14971:2019 §4.5 / §9** from this repository's living records at release `showcase-2026-07-20` (commit `7909861`). It is a *compiled view* — the authoritative records remain the project forge (issues + pull requests) and git history; narrative sections are transcluded verbatim from their source files, and the harm-risk register is rendered from the release's register export.
+> **What this document is.** A single-file **Risk Management File & Report** compiled per **ISO 14971:2019 §4.5 / §9** from this repository's living records at release `showcase-2026-07-20` (commit `7a62afe`). It is a *compiled view* — the authoritative records remain the project forge (issues + pull requests) and git history; narrative sections are transcluded verbatim from their source files, and the harm-risk register is rendered from the release's register export.
 >
 > **Honesty & scope.** Unfilled `<…>` / `[RA]` placeholders are shown *as-is* — this document fabricates nothing. It makes **no claim of conformity**; determinations of applicability and acceptance remain **[NEEDS RA INPUT]** (the manufacturer's regulatory function decides, not this generator). Whether the product qualifies as medical-device software (MDSW) is stated in the transcluded ADR-0001. This is a manufacturer self-compilation and does **not** replace a Notified-Body assessment or an ISO 13485 quality-management-system internal audit.
 >
@@ -22,8 +22,8 @@ numbersections: true
 | Item | Value |
 |---|---|
 | Release / version | showcase-2026-07-20 |
-| Source commit | 7909861 |
-| Compiled (UTC) | 2026-07-20 17:37 UTC |
+| Source commit | 7a62afe |
+| Compiled (UTC) | 2026-07-20 18:47 UTC |
 | Generator | scripts/build-risk-management-file.py |
 | Standards frame | EN ISO 14971:2019(+A11:2021), ISO/TR 24971:2020, IEC 62304:2006+A1:2015, IEC 62366-1, IEC 81001-5-1, ISO 81001-1, MDR (EU) 2017/745 Annex I (editions per Annex A9) |
 | MDSW qualification | see §1 (ADR-0001) |
@@ -413,7 +413,7 @@ credential stuffing (threat) via missing rate limit (vulnerability) → confiden
 breach (impact)*. Score in the register's 5×5: **L** = likelihood of successful
 exploitation (consider exposure, attacker capability, existing controls); **I** = security
 impact on confidentiality / integrity / availability of the product and its data. STRIDE
-(the `security-reviewer` skill's threat-model
+(the [`security-reviewer`](https://github.com/forschungsgruppe-digital-health/risk-management-template/blob/main/skills/security-reviewer/SKILL.md) skill's threat-model
 pass) and the CI scanners feed this analysis; detectors feed, never decide.
 
 #### 2. Coupling rules — security ↔ safety (MDCG 2019-16 §3.2)
@@ -517,7 +517,7 @@ this document + the `use-scenario` issues + the linked harm-risks + the design d
 | §5.7 Establish **UI evaluation plan** (5.7.2 formative / 5.7.3 summative) | how the interface will be evaluated | §6 below |
 | §5.8 Design + implement + **formative** evaluation | iterative, exploratory testing during design | §6 below; findings loop back as `use-scenario`/harm-risk updates |
 | §5.9 **Summative** evaluation (validation of safe use) | final objective evidence of safe use | **deferred-to-manufacturer** (`CONFORMANCE_TRANSFER.md`) |
-| §5.10 **User interface of unknown provenance (UIUP)** | reused UI you did not develop under this process | §7 below |
+| §5.10 **User interface of unknown provenance (UOUP)** | reused UI you did not develop under this process | §7 below |
 
 #### 3. Use specification (§5.1)
 
@@ -555,7 +555,8 @@ use-related risk, the control tiers are:
 1. **Inherently safe UI design** — make the error impossible or harmless by construction (e.g.
    bind patient context immutably per view; disable an unsafe action in an unsafe state).
 2. **Protective measures** — in the UI or its environment (confirmation for irreversible actions,
-   a persistent patient banner, alarms — mind alarm fatigue, a §7.5 new risk).
+   a persistent patient banner, alarms — mind alarm fatigue, a new risk from the control per
+   ISO 14971 §7.5).
 3. **Information for safety** — labels, warnings, instructions, training (weakest; flag
    `disclose-in-ifu` so it reaches the accompanying information / instructions-for-use).
 
@@ -571,12 +572,12 @@ use-related risk, the control tiers are:
   needs a production-equivalent build and representative users); pre-stage its **inputs** here (the
   selected scenarios, user profiles, use environments) so it is not reconstructed later.
 
-#### 7. User interface of unknown provenance — UIUP (§5.10 / Annex C)
+#### 7. User interface of unknown provenance — UOUP (§5.10 / Annex C)
 
-A user interface (or UI component) you reuse but did not develop under this process is a **UIUP** —
+A user interface (or UI component) you reuse but did not develop under this process is a **UOUP** —
 the usability analogue of SOUP (`SOUP.md`). Treat it like SOUP: identify it, state what
 safe-use behaviour you rely on, review available post-production/known-use-problem information, and
-carry any use-related hazard it introduces into the harm-risk register. Note UIUP components
+carry any use-related hazard it introduces into the harm-risk register. Note UOUP components
 alongside their code dependency in `soup.yaml` (a comment or a `ui: true` marker) or
 in the `use-scenario` issue.
 
@@ -625,7 +626,7 @@ ISO/IEC/IEEE 29148:2018 (singular, verifiable, unambiguous).
 | Implementation → **test** | the PR that closes a requirement contains (or links) the verifying tests; name tests so the requirement is findable (e.g. `REQ-42` in the test name or a `Verifies: #42` line in the PR body) |
 | Requirement ↔ **risk** | a requirement mitigating a registered risk links the `risk`/`harm-risk` issue and vice versa |
 | **SOUP** → requirement | a `soup.yaml` entry names the requirement its use is justified by (`req:` field) — closing the IEC 62304 §5.3.3 / §7.1.3 loop |
-| **risk control** → test | a harm-risk control's *effectiveness* verification (§7.2) links its test/PR inside the issue; a delivery-risk mitigation likewise |
+| **risk control** → test | a harm-risk control's *effectiveness* verification (ISO 14971 §7.2; the IEC 62304 software edge is §7.3) links its test/PR inside the issue; a delivery-risk mitigation likewise |
 
 One requirement per issue — bundles break the chain.
 
@@ -690,7 +691,7 @@ timeline are moving targets — re-check them at the review cadence.
 
 | Standard / Regulation | Edition | Role | Status | Evidenced in |
 |---|---|---|---|---|
-| [Regulation (EU) 2016/679 (GDPR)](https://eur-lex.europa.eu/eli/reg/2016/679/oj) | in force | lawful processing; DPIA (Art. 35) where high-risk (e.g. health data); Art. 32 measures | active — **method live; fill before real-data processing** (per project) | `docs/dpia/` (living DPIA + Art. 32 TOM register), the `dpia-officer` skill |
+| [Regulation (EU) 2016/679 (GDPR)](https://eur-lex.europa.eu/eli/reg/2016/679/oj) | in force | lawful processing; DPIA (Art. 35) where high-risk (e.g. health data); Art. 32 measures | active — **method live; fill before real-data processing** (per project) | `docs/dpia/` (living DPIA + Art. 32 TOM register), the [`dpia-officer`](https://github.com/forschungsgruppe-digital-health/risk-management-template/blob/main/skills/dpia-officer/SKILL.md) skill |
 | ISO/IEC 27001 — *Information security management systems — Requirements* | 2022 | ISMS reference frame | active (reference) | this index |
 | ISO 27799 — *Health informatics — Information security controls in health based on ISO/IEC 27002* | **2025** (third ed., 2025-12; based on ISO/IEC 27002:2022; cancels and replaces 27799:2016 and ISO/TS 14441:2013) | health-sector ISM guidance | active (reference) | this index |
 | IEC 81001-5-1 — *Health software and health IT systems safety, effectiveness and security — Part 5-1: Security — Activities in the product life cycle* | 2021 | secure development lifecycle for **health software regardless of MDSW status**; designed to plug into IEC 62304; FDA-recognized, referenced in German TI context | active | `docs/SECURITY_RISK.md`, `SECURITY.md` (CVD), SBOM workflow, `docs/SOUP.md`, vulnerability→register automation |
@@ -715,7 +716,8 @@ timeline are moving targets — re-check them at the review cadence.
 | ISO 14971 — *Medical devices — Application of risk management to medical devices* | 2019 (Ed. 3); harmonized EU edition **EN ISO 14971:2019+A11:2021** (Annex ZA — the MDR "as far as possible" reconciliation, see `HARM_RISK.md` §4) | harm-risk management process | iff MDSW — **register kept live now** | `docs/HARM_RISK.md`, harm-risk board, §9 report |
 | ISO/TR 24971 — *Guidance on the application of ISO 14971* | 2020 | scoring guidance (incl. P1×P2 decomposition) | companion to the above | `docs/HARM_RISK.md` |
 | IEC 62366-1 — *Application of usability engineering to medical devices* | 2015 + A1:2020 | usability engineering file; **summative validation deferred-to-manufacturer** | iff MDSW — **method kept live now** | `docs/USABILITY.md`, the `use-scenario` form, `hazard-cat:usability` harm-risks; formative notes per project |
-| IEC 82304-1 — *Health software — Part 1: General requirements for product safety* | 2016 | product-level safety requirements for standalone health software | iff MDSW | — |
+| ISO 81001-1 — *Health software and health IT systems safety, effectiveness and security — Part 1: Principles and concepts* | 2021 | the foundational vocabulary + the safety/effectiveness/security "key properties" triad the other health-software standards build on | active (reference — foundational) | `docs/learning/risk-management-primer.md`, `docs/SECURITY_RISK.md` |
+| IEC 82304-1 — *Health software — Part 1: General requirements for product safety* | 2016 | product-level safety **and security** requirements for standalone health software (points to IEC 62304 for the life cycle, ISO 14971 for risk management) | iff MDSW | — |
 | IEC 80001-1 — *Application of risk management for IT-networks incorporating medical devices — Part 1: Safety, effectiveness and security in the implementation and use of connected medical devices or connected health software* | 2021 (Ed. 2) | operator-side network risk (deployment into clinical IT) | iff MDSW (operator-facing) | deployment docs |
 | ISO 13485 — *Medical devices — Quality management systems — Requirements for regulatory purposes* | 2016 (EN version incl. A11:2021) | the manufacturer's QMS | **deferred-to-manufacturer** — organizational, not a repo artifact | `docs/CONFORMANCE_TRANSFER.md` |
 | ISO 20417 — *Medical devices — Information to be supplied by the manufacturer* | 2026 (Ed. 2; supersedes 2021) | labelling / IFU content requirements (design-side) | iff MDSW | project labelling/IFU docs |
@@ -770,4 +772,4 @@ timeline are moving targets — re-check them at the review cadence.
 
 ---
 
-*End of compiled Risk Management File. Generated by `scripts/build-risk-management-file.py` from commit `7909861`. This document is decision-input for the manufacturer's regulatory function and a Notified Body; it asserts no conformity.*
+*End of compiled Risk Management File. Generated by `scripts/build-risk-management-file.py` from commit `7a62afe`. This document is decision-input for the manufacturer's regulatory function and a Notified Body; it asserts no conformity.*
